@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <link href='https://fonts.googleapis.com/css?family=Overpass' rel='stylesheet'>
+  <title>Frontend Mentor | Interactive rating component</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+   
+   
+body{
+	 font-family: 'Overpass';
+	 background-color:  hsl(216, 12%, 8%);
+	 font-size:15px;
+	 font-weight: 400;
+	 color:hsl(217, 12%, 63%)
+} 
+ #page{
+		
+	   height: 100vh;
+	   display: flex;
+	   align-items: center;
+	   justify-content: center;
+
+	/*
+	 display: grid; 
+	 justify-content: center;
+	 align-content: center;
+	*/
+	
+ }   
+ 
+ .main_box{
+	 height:310px;
+	width: 277px;
+	background-color:#1f2630;
+	border-radius: 10px;
+	
+	padding: 25px;
+	justify-content: space-evenly;
+	
+ }
+ 
+h2{
+	font-weight:700;
+}
+
+
+button{
+	cursor: pointer;
+}
+ 
+.circle, .final_rating{
+	 border-radius: 50%;
+	 text-align: center;
+	 width: 40px;
+	 height: 40px;
+ }
+ 
+ .rating_note{
+	  background-color:#262f38;
+ }
+ 
+.submit{
+	background-color:hsl(25, 97%, 53%);
+	
+	width:100%;
+	height:45px;
+	border-radius: 25px;
+	text-align: center;
+}
+.logo{
+	 display: grid; 
+	 justify-content: center;
+	align-content: center;
+	 background-color:#262f38;
+}
+
+button, h2{
+	color: white;
+	border: 0px;
+}
+
+
+.rating_line button:hover{
+	background-color:hsl(217, 12%, 63%);
+}
+
+.rating_line{
+	display: flex;
+	justify-content: space-between;
+	padding: 20px 0px;
+}
+
+.submit{
+	 display: grid; 
+	 justify-content: center;
+  align-content: center;
+}
+
+.submit:hover{
+	background-color:white;
+	color:orange;
+}
+
+.rating_finished{
+	text-align:center;
+	
+}
+.rating_finished img{
+	margin: 10px;
+}
+
+.final_rating{
+	color:orange;
+	 text-align: center;
+	 background-color:#262f38;
+	 display:  initial;// inline-block;
+	 align-items: center;
+	 justify-content: center;
+	 border-radius: 20px;
+	 padding: 7px 12px;
+	 margin-top: 15px;
+}
+
+.rating_selected{
+	backgroung-color:orange;
+}
+
+.selected{
+	background-color:orange;
+}
+
+.selected:hover{
+	background-color:orange!important;
+}
+
+#second_box{
+	display:none;
+}
+
+ 
+  </style>
+  
+  <script >
+	  //alert("hey!");
+	  
+	  var selected = null;
+	  
+	  function rate(val){
+		  selected = val;
+		  
+		  
+		  Array.from(document.getElementsByClassName("rating_note"))
+			.forEach((element) => element.classList.remove('selected'));
+		  
+		  document.getElementById('btn'+selected).classList.add('selected');
+	  }
+	  
+	  
+	  function submit(){
+		  if(selected===null) return;
+		  document.getElementById('first_box').style.display = "none";
+		  document.getElementById('rating_selected').style.content = selected;
+		  document.getElementById('second_box').style.display = "block";
+		  
+		  document.getElementById("rating_selected").innerHTML = selected;
+		  
+	  }
+	  </script>
+</head>
+<body>
+<div id="page">
+	
+
+  <!-- Rating state start -->
+
+
+<div class="main_box" id="first_box">
+	<div class="circle logo">
+	<img src="images/icon-star.svg">
+	</div>
+		  <h2>How did we do?</h2>
+
+		  Please let us know how we did with your support request. All feedback is appreciated 
+		  to help us improve our offering!
+
+		<div class="rating_line" >
+			<button class="circle rating_note" id="btn1" onclick="rate(1)">
+			1
+			</button>
+			
+			<button class="circle rating_note"  id="btn2" onclick="rate(2)">
+			2
+			</button>
+			
+			<button class="circle rating_note"  id="btn3" onclick="rate(3)">
+			3
+			</button>
+			
+			<button class="circle rating_note"  id="btn4" onclick="rate(4)">
+			4
+			</button>
+			
+			<button class="circle rating_note"  id="btn5" onclick="rate(5)">
+			5
+			</button>
+		</div>
+		
+		<button class="submit" onclick="submit()">
+			SUBMIT
+			</button>
+</div>
+		
+<!--   Rating state end -->
+
+
+<div class="main_box rating_finished" id="second_box">
+	
+	
+	<img src="images/illustration-thank-you.svg">
+	<br/><br/>
+		<div class="final_rating">
+		  You selected <span id="rating_selected">X</span> out of 5
+		</div>
+	<br/>
+	
+
+		  <h2>Thank you!</h2>We appreciate you taking the time to give a rating. If you ever need more support, 
+		  don’t hesitate to get in touch!
+	
+	
+</div>
+
+<!--
+		   Thank you state start 
+
+		  You selected  Add rating here  out of 5
+
+		  Thank you!
+
+		  We appreciate you taking the time to give a rating. If you ever need more support, 
+		  don’t hesitate to get in touch!
+
+		  <!-- Thank you state end -->
+
+ </div>
+ 
+ 
+ 
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Icaro Mendes</a>.
+  </div>
+</body>
+</html>
